@@ -1,5 +1,6 @@
 package DTO;
 
+import DAO.ConsultasDAO;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -11,22 +12,54 @@ import DAO.InventarioDAO;
 @ManagedBean(name = "bkn_InventarioDTO")
 public class InventarioDTO implements Serializable {
 
+    /**
+     * @return the listaUsuarios
+     */
+    public List<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    /**
+     * @param listaUsuarios the listaUsuarios to set
+     */
+    public void setListaUsuarios(List<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+
     private Long id;
     private Long id_producto;
     private String precio_coste;
     private String precio_publico;
     private String cantidad;
     private List<InventarioDTO> lista;
+    private List<Usuario> listaUsuarios;
     InventarioDAO consulta = new InventarioDAO();
 
-    public InventarioDTO() {
+    public InventarioDTO(){
     }
 
     @PostConstruct
     public void init() {
         // Puedes inicializar algún dato aquí si es necesario
+        
+        listarUsuarios();   
+        System.out.println("-------------------------------------------------PRUEBA DE IMPRESION----------------------------------------------------------------");
     }
-
+    
+    public void listarUsuarios(){
+        
+        ConsultasDAO consulta  = new ConsultasDAO();
+        
+        try{
+            setListaUsuarios(consulta.consultarUsuarios()) ;
+            System.out.println("Usuarios: " + consulta.consultarUsuarios());
+        }catch(Exception e){
+            System.out.println("Error al listar usuarios");
+        }
+        
+      
+    }
+    
     public void agregarInventario() {
         System.out.println("Código Producto: " + getId_producto());
         System.out.println("Precio Coste: " + getPrecio_coste());

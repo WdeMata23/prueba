@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Ingreso de Productos</title>
+    </h:head>
+    <h:body>
+            <div id="tabla" class="mostrarAutores">
+                <h1  class="contenedorFormulario"> <p:outputLabel value="USUARIOS" /></h1>
+
+                <h:form id="form2">
+
+                    <p:toolbar>
+
+                    </p:toolbar>
+                    <p:dataTable  id="tblDatos" widgetVar="dtProducts" var="usuario" value="#{bkn_InventarioDTO.listaUsuarios}"
+                                  reflow="true" styleClass="products-table" selection="#{bkn_InventarioDTO.listaUsuarios}"
+                                  rowKey="#{listaUsuario.id}" paginator="true" rows="15" rowSelectMode="add" paginatorPosition="top"
+                                  editable="true">
+
+                        <p:ajax event="rowSelect"  />
+                        <p:ajax event="rowUnselect"  />
+                        <p:ajax event="rowSelectCheckbox" />
+                        <p:ajax event="rowUnselectCheckbox" />
+                        <p:ajax event="toggleSelect" />
+
+                        <p:column headerText="ID" sortBy="" filterBy="">       
+                            <h:outputText value="#{usuario.id}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE" sortBy="" filterBy="">
+                            <h:outputText value="#{usuario.nombre}"/>
+                        </p:column>
+                        <p:column headerText="PUESTO" sortBy="" filterBy="">
+                            <h:outputText value="#{usuario.puesto}"/>
+                        </p:column>
+                        <p:column headerText="USUARIO" sortBy="" filterBy="">
+                            <h:outputText value="#{usuario.usuario}"/>
+                        </p:column>
+                        <p:column headerText="CONTRASEÑA" sortBy="" filterBy="">
+                            <h:outputText value="#{usuario.contraseña}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
+    </h:body>
+</html>

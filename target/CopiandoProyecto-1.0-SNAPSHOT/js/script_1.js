@@ -205,5 +205,3 @@ function contadorCaracteres(pTextArea, pRestante, pLimite) {
         }
     }
 }
-
-<jsp:directive.page xmlns:p="http://primefaces.org/ui" />

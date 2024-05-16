@@ -7,7 +7,7 @@ public class ConexionDAO {
 
     private String url = "jdbc:mysql://localhost:3306/sistemaredes"; // URL de la base de datos
     private String usuario = "root";
-    private String contraseña = "1945";
+    private String contraseña = "";
 
     public Connection conexionMysql() throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
