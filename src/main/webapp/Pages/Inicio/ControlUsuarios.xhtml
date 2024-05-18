@@ -31,11 +31,6 @@
                           reflow="true" styleClass="products-table" selection="#{bkn_InventarioDTO.listaUsuarios}"
                           rowKey="#{listaUsuario.id}" paginator="true" rows="15" rowSelectMode="add" paginatorPosition="top"
                           editable="true">
-                <p:ajax event="rowSelect"  />
-                <p:ajax event="rowUnselect"  />
-                <p:ajax event="rowSelectCheckbox" />
-                <p:ajax event="rowUnselectCheckbox" />
-                <p:ajax event="toggleSelect" />
 
                 <p:column headerText="ID" sortBy="" filterBy="">       
                     <h:outputText value="#{usuario.id}"/>
@@ -48,6 +43,9 @@
                 </p:column>
                 <p:column headerText="USUARIO" sortBy="" filterBy="">
                     <h:outputText value="#{usuario.usuario}"/>
+                </p:column>
+                <p:column headerText="CONTRASEÑA" sortBy="" filterBy="">
+                    <h:outputText value="#{usuario.contraseña}"/>
                 </p:column>
                 <p:column headerText="CONTRASEÑA" sortBy="" filterBy="">
                     <h:outputText value="#{usuario.contraseña}"/>
