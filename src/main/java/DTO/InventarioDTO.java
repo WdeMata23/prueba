@@ -13,6 +13,62 @@ import DAO.InventarioDAO;
 public class InventarioDTO implements Serializable {
 
     /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the usuario
+     */
+    public String getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @return the puesto
+     */
+    public String getPuesto() {
+        return puesto;
+    }
+
+    /**
+     * @param puesto the puesto to set
+     */
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
+    }
+
+    /**
+     * @return the contraseña
+     */
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    /**
+     * @param contraseña the contraseña to set
+     */
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    /**
      * @return the listaUsuarios
      */
     public List<Usuario> getListaUsuarios() {
@@ -25,7 +81,12 @@ public class InventarioDTO implements Serializable {
     public void setListaUsuarios(List<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
     }
-
+    //usuarios
+    private String nombre;
+    private String usuario;
+    private String puesto;
+    private String contraseña;
+    //producto
     private Long id;
     private Long id_producto;
     private String precio_coste;
@@ -35,31 +96,30 @@ public class InventarioDTO implements Serializable {
     private List<Usuario> listaUsuarios;
     InventarioDAO consulta = new InventarioDAO();
 
-    public InventarioDTO(){
+    public InventarioDTO() {
     }
 
     @PostConstruct
     public void init() {
         // Puedes inicializar algún dato aquí si es necesario
-        
-        listarUsuarios();   
+
+        listarUsuarios();
         System.out.println("-------------------------------------------------PRUEBA DE IMPRESION----------------------------------------------------------------");
     }
-    
-    public void listarUsuarios(){
-        
-        ConsultasDAO consulta  = new ConsultasDAO();
-        
-        try{
-            setListaUsuarios(consulta.consultarUsuarios()) ;
+
+    public void listarUsuarios() {
+
+        ConsultasDAO consulta = new ConsultasDAO();
+
+        try {
+            setListaUsuarios(consulta.consultarUsuarios());
             System.out.println("Usuarios: " + consulta.consultarUsuarios());
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error al listar usuarios");
         }
-        
-      
+
     }
-    
+
     public void agregarInventario() {
         System.out.println("Código Producto: " + getId_producto());
         System.out.println("Precio Coste: " + getPrecio_coste());
@@ -69,6 +129,20 @@ public class InventarioDTO implements Serializable {
             consulta.ingresarInventario(getId_producto(), getPrecio_coste(), getPrecio_publico(), getCantidad());
         } catch (Exception ex) {
             Logger.getLogger(InventarioDTO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void agregarUsuario() {
+
+        ConsultasDAO consulta = new ConsultasDAO();
+        
+        try {
+            //consulta.ingresarInventario(getId_producto(), getPrecio_coste(), getPrecio_publico(), getCantidad());
+            consulta.insertarUsuario(getNombre(), getPuesto(), getUsuario(), getContraseña());
+            System.out.println("DATOS USUARIO: "+getNombre()+":"+getPuesto()+":"+getUsuario()+":"+getContraseña());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error al agregar usuario");
         }
     }
 

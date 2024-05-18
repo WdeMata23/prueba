@@ -25,5 +25,6 @@ public class InventarioDAO {
             stmt.setString(4, cantidad);
             stmt.executeUpdate();
         }
+
     }
 }
